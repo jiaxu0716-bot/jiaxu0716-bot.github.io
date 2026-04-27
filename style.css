@@ -483,6 +483,18 @@ body.lang-en .lang-en-label { color: var(--switch-blue); }
   top: 3px;
 }
 
+.about-list li.about-divider {
+  padding-left: 0;
+  text-align: center;
+  margin: 0.4rem 0 0.2rem;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  color: var(--switch-red);
+  opacity: 0.7;
+}
+.about-list li.about-divider::before { content: none; }
+
 /* ===== TIMELINE ===== */
 .timeline {
   position: relative;
