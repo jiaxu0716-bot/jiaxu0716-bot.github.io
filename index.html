@@ -3,556 +3,792 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>贾旭 | AI训练师 - 个人主页</title>
-  <link rel="stylesheet" href="style.css?v=20260427b">
+  <title>贾旭 / JIAXU · Personal Console</title>
+  <link rel="stylesheet" href="style.css?v=switch1">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎮</text></svg>">
 </head>
-<body>
-  <canvas id="pixelBg"></canvas>
+<body class="boot-mode">
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-logo"></div>
-    <div class="nav-links">
-      <a href="#about" data-zh="关于" data-en="About">关于</a>
-      <a href="#experience" data-zh="经历" data-en="Experience">经历</a>
-      <a href="#projects" data-zh="项目" data-en="Projects">项目</a>
-      <a href="#portfolio" data-zh="个人作品集" data-en="Personal Works">个人作品集</a>
-      <a href="#publications" data-zh="成果" data-en="Publications">成果</a>
-      <a href="#skills" data-zh="技能" data-en="Skills">技能</a>
-      <a href="#contact" data-zh="联系" data-en="Contact">联系</a>
+  <!-- ===== BOOT SCREEN ===== -->
+  <div id="bootScreen" class="boot-screen">
+    <div class="boot-logo">
+      <span class="boot-text-zh">贾旭</span>
+      <span class="boot-bar"></span>
+      <span class="boot-text-en">JIAXU</span>
     </div>
-    <button class="lang-toggle" id="langToggle" title="切换语言 / Switch Language">
-      <span class="lang-label lang-zh-label">中</span>
-      <span class="lang-slider-track">
-        <span class="lang-slider-thumb"></span>
-      </span>
-      <span class="lang-label lang-en-label">EN</span>
-    </button>
-  </nav>
+    <div class="boot-tagline">PERSONAL · CONSOLE · v2.0</div>
+    <div class="boot-press-hint">
+      <span class="hint-icon">▶</span>
+      <span data-zh="点击屏幕开始" data-en="CLICK TO START">CLICK TO START</span>
+    </div>
+  </div>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="hero-greeting pixel-text" data-zh="你好，我是" data-en="Hi, I'm">你好，我是</p>
-        <h1 class="hero-name" data-zh="贾旭" data-en="Jia Xu">贾旭</h1>
-        <div class="hero-title-wrapper">
-          <span class="hero-title" data-zh="多模态评测工程师 / AI 训练师" data-en="Multimodal Evaluation Engineer / AI Trainer">多模态评测工程师 / AI 训练师</span>
-          <span class="pixel-cursor">▮</span>
+  <!-- ===== SWITCH CONSOLE SHELL ===== -->
+  <div id="console" class="console" aria-hidden="true">
+
+    <!-- Left Joy-Con (red) -->
+    <div class="joycon joycon-left" aria-hidden="true">
+      <div class="joycon-stick joycon-stick-left"></div>
+      <div class="joycon-dpad">
+        <span class="dpad-up">▲</span>
+        <span class="dpad-down">▼</span>
+        <span class="dpad-left">◀</span>
+        <span class="dpad-right">▶</span>
+      </div>
+      <div class="joycon-meta">
+        <span class="meta-minus">−</span>
+        <span class="meta-capture">⊡</span>
+      </div>
+      <div class="joycon-rail"></div>
+    </div>
+
+    <!-- Right Joy-Con (blue) -->
+    <div class="joycon joycon-right" aria-hidden="true">
+      <div class="joycon-stick joycon-stick-right"></div>
+      <div class="joycon-abxy">
+        <span class="btn-x">X</span>
+        <span class="btn-y">Y</span>
+        <span class="btn-a">A</span>
+        <span class="btn-b">B</span>
+      </div>
+      <div class="joycon-meta">
+        <span class="meta-plus">+</span>
+        <span class="meta-home">⌂</span>
+      </div>
+      <div class="joycon-rail"></div>
+    </div>
+
+    <!-- Main Screen -->
+    <div class="screen">
+
+      <!-- Top Status Bar -->
+      <div class="status-bar">
+        <div class="status-left">
+          <span class="status-username">贾旭</span>
         </div>
-        <p class="hero-desc" data-zh="计算机科学与技术 · RLHF 标注 · 多模态评测 · 质检管理" data-en="Computer Science · RLHF Annotation · Multimodal Evaluation · QA Management">计算机科学与技术 · RLHF 标注 · 多模态评测 · 质检管理</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-red" data-zh="联系我" data-en="Contact Me">联系我</a>
-          <a href="#projects" class="btn btn-blue" data-zh="查看项目" data-en="View Projects">查看项目</a>
+        <div class="status-right">
+          <span class="status-icon" id="muteToggle" title="Toggle Sound">🔇</span>
+          <span class="status-icon" id="langToggle" title="切换语言 / Switch Language">中</span>
+          <span class="status-icon">📶</span>
+          <span class="status-time" id="statusTime">--:--</span>
+          <span class="status-battery">🔋 100%</span>
         </div>
       </div>
-      <div class="hero-photo-wrapper">
-        <div class="photo-blob"></div>
-        <img src="photo.jpg" alt="贾旭" class="hero-photo">
-      </div>
-    </div>
-    <div class="scroll-hint"><div class="pixel-arrow">▼</div></div>
-  </section>
 
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="关于我" data-en="About Me">关于我</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="about-grid">
-        <div class="about-card card-red">
-          <div class="card-pixel-corner tl"></div>
-          <div class="card-pixel-corner br"></div>
-          <h3 data-zh="🎓 教育背景" data-en="🎓 Education">🎓 教育背景</h3>
-          <p class="about-major" data-zh="计算机科学与技术 | 本科（2025年毕业）" data-en="Computer Science & Technology | Bachelor (Class of 2025)">计算机科学与技术 | 本科（2025年毕业）</p>
-          <p class="about-courses" data-zh="核心课程：自然语言处理、机器学习、数据结构与算法、Python 程序设计、Java 全栈开发" data-en="Core Courses: NLP, Machine Learning, Data Structures & Algorithms, Python, Java Full-stack">核心课程：自然语言处理、机器学习、数据结构与算法、Python 程序设计、Java 全栈开发</p>
-        </div>
-        <div class="about-card card-blue">
-          <div class="card-pixel-corner tl"></div>
-          <div class="card-pixel-corner br"></div>
-          <h3 data-zh="💡 个人优势" data-en="💡 Strengths">💡 个人优势</h3>
-          <ul class="about-list">
-            <li data-zh="计算机科学专业背景，理解 NLP、大模型微调（SFT/RLHF）及多模态模型原理，能与算法团队高效对接技术需求" data-en="CS major; understands NLP, LLM fine-tuning (SFT/RLHF), and multimodal model principles — communicates effectively with algorithm teams">计算机科学专业背景，理解 NLP、大模型微调（SFT/RLHF）及多模态模型原理，能与算法团队高效对接技术需求</li>
-            <li data-zh="两段 AI 模型评测实操经历（科大讯飞 + 可灵 AI），横跨 RLHF 标注、多模态评测、训练数据构建、Bad Case 分析与质检管理，具备从数据生产到质量管控的全链路经验" data-en="Two AI model-evaluation experiences (iFlytek + Kling AI) spanning RLHF annotation, multimodal eval, training-data construction, Bad Case analysis, and QA — full pipeline from data production to quality control">两段 AI 模型评测实操经历（科大讯飞 + 可灵 AI），横跨 RLHF 标注、多模态评测、训练数据构建、Bad Case 分析与质检管理，具备从数据生产到质量管控的全链路经验</li>
-            <li data-zh="熟练使用 Python（pandas/数据可视化）处理批量数据；具备 Prompt Engineering 能力，可设计意图识别 + 分类 PE 工作流实现训练数据生产自动化（人工介入比例从 100% 降至 6%）" data-en="Proficient with Python (pandas / data viz) for batch data processing; PE engineering skills — designed an intent-classification PE workflow that cut manual intervention from 100% to 6%">熟练使用 Python（pandas/数据可视化）处理批量数据；具备 Prompt Engineering 能力，可设计意图识别 + 分类 PE 工作流实现训练数据生产自动化（人工介入比例从 100% 降至 6%）</li>
-            <li class="about-divider"><span data-zh="—— 自我评价 ——" data-en="—— Self-assessment ——">—— 自我评价 ——</span></li>
-            <li data-zh="🔍 质量敏感：质检中发现问题习惯追溯根因，推动规则层面的修复，而非仅做单条纠正" data-en="🔍 Quality-sensitive: trace root causes and drive rule-level fixes, not just single-case corrections">🔍 质量敏感：质检中发现问题习惯追溯根因，推动规则层面的修复，而非仅做单条纠正</li>
-            <li data-zh="🚀 跨场景适应：独立上手医疗 Agent RLHF、文生视频评测、标注质检三类不同项目，每次均快速完成从学习规则到独立产出的过渡" data-en="🚀 Cross-scenario adaptability: independently ramped up on medical Agent RLHF, T2V evaluation, and QA management — fast transition from learning rules to autonomous delivery each time">🚀 跨场景适应：独立上手医疗 Agent RLHF、文生视频评测、标注质检三类不同项目，每次均快速完成从学习规则到独立产出的过渡</li>
-            <li data-zh="🛠️ 工具化思维：会使用 Coze 搭建 Workflow；用 PE 工作流将训练数据生产自动化，人工介入比例可降至 6% 以下" data-en="🛠️ Tooling mindset: builds Coze workflows; uses PE pipelines to automate training-data production, reducing manual intervention to under 6%">🛠️ 工具化思维：会使用 Coze 搭建 Workflow；用 PE 工作流将训练数据生产自动化，人工介入比例可降至 6% 以下</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section class="section section-alt" id="experience">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="工作经历" data-en="Experience">工作经历</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3 data-zh="可灵 AI（快手）" data-en="Kling AI (Kuaishou)">可灵 AI（快手）</h3>
-              <span class="timeline-badge" data-zh="多模态评测工程师 / 质检负责人" data-en="Multimodal Evaluation Engineer / QA Lead">多模态评测工程师 / 质检负责人</span>
-            </div>
-            <span class="timeline-duration" data-zh="2025.08 – 2026.03" data-en="Aug 2025 – Mar 2026">2025.08 – 2026.03</span>
-            <ul class="timeline-list">
-              <li data-zh="独立完成文生视频评测 Prompt 撰写，覆盖人物动作、自然场景、物体交互等多类任务，构建标准化多场景测试集" data-en="Independently authored text-to-video evaluation prompts covering human actions, natural scenes, and object interactions; built a standardized multi-scenario test set">独立完成文生视频评测 Prompt 撰写，覆盖人物动作、自然场景、物体交互等多类任务，构建标准化多场景测试集</li>
-              <li data-zh="围绕可灵不同版本开展迭代对比评测，从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分，累计产出多份版本对比报告" data-en="Ran iterative cross-version evaluation, scoring 1–5 across image quality, motion, physics, subject stability, and prompt alignment; delivered multiple version-comparison reports">围绕可灵不同版本开展迭代对比评测，从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分，累计产出多份版本对比报告</li>
-              <li data-zh="协助完成 80+ 人标注团队培训与质检管理，个人覆盖审核超 2 万条，执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上" data-en="Co-managed training and QA for a team of 80+; personally reviewed 20,000+ items; refined tiered sampling QA — delivery accuracy stayed at 95%+">协助完成 80+ 人标注团队培训与质检管理，个人覆盖审核超 2 万条，执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上</li>
-              <li data-zh="参与文生视频训练数据构建：负责 caption 标注与数据筛选，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗，保障入库数据质量" data-en="Built T2V training data: authored captions and curated samples; ran multi-round cleaning on image quality, motion smoothness, and semantic matching to ensure dataset quality">参与文生视频训练数据构建：负责 caption 标注与数据筛选，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗，保障入库数据质量</li>
-              <li data-zh="主导 Bad Case 分析流程：系统性收集生成失败样本，按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队，推动针对性模型迭代" data-en="Led Bad Case analysis: collected failure samples and grouped them by issue type (limb distortion, physics violation, semantic drift, etc.); delivered Bad Case reports to the algo team to drive targeted iterations">主导 Bad Case 分析流程：系统性收集生成失败样本，按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队，推动针对性模型迭代</li>
-              <li data-zh="主导 caption 训练数据生产提效项目，迭代演进为「意图识别 + 分类 PE + 验证闭环」三阶段方案，将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP" data-en="Led caption-data production efficiency project; evolved a three-stage pipeline (intent recognition + category-specific PE + verification loop) that cut manual intervention from ~100% to ~6%; codified into team SOP">主导 caption 训练数据生产提效项目，迭代演进为「意图识别 + 分类 PE + 验证闭环」三阶段方案，将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP</li>
-              <li data-zh="提出新人上岗考核方案并推动落地，缩短团队上手周期；同期积累文生图与多轮问答等多模态评测经验" data-en="Designed and rolled out an onboarding assessment, shortening ramp-up; also gained experience in T2I and multi-turn QA evaluation">提出新人上岗考核方案并推动落地，缩短团队上手周期；同期积累文生图与多轮问答等多模态评测经验</li>
-            </ul>
+      <!-- ============================================ -->
+      <!-- HOME MENU                                    -->
+      <!-- ============================================ -->
+      <section id="homeMenu" class="screen-content home-menu active">
+        <div class="home-header">
+          <div class="home-greeting">
+            <span class="greeting-icon">◉</span>
+            <span data-zh="选择一个游戏开始" data-en="Select a game to start">选择一个游戏开始</span>
           </div>
+          <div class="home-date" id="homeDate">2026年4月27日</div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <h3 data-zh="科大讯飞 · 医疗星火大模型团队" data-en="iFlytek · Medical Spark LLM Team">科大讯飞 · 医疗星火大模型团队</h3>
-              <span class="timeline-badge" data-zh="RLHF 项目实习生" data-en="RLHF Project Intern">RLHF 项目实习生</span>
+
+        <div class="game-tiles" id="gameTiles">
+
+          <button class="game-tile" data-game="01" data-color="red">
+            <div class="tile-cover tile-cover-01">
+              <div class="tile-pattern"></div>
+              <div class="tile-icon">👤</div>
+              <div class="tile-num">01</div>
             </div>
-            <span class="timeline-duration" data-zh="2024.07 – 2024.09" data-en="Jul 2024 – Sep 2024">2024.07 – 2024.09</span>
-            <ul class="timeline-list">
-              <li data-zh="参与医疗智能助手 Agent RLHF 偏好标注，覆盖挂号预约、查报告、查用药等高频场景，累计完成高质量标注 800+ 条" data-en="Participated in RLHF preference annotation for a medical Agent, covering appointments, reports, and prescriptions; completed 800+ high-quality annotations">参与医疗智能助手 Agent RLHF 偏好标注，覆盖挂号预约、查报告、查用药等高频场景，累计完成高质量标注 800+ 条</li>
-              <li data-zh="从思考过程、工具选择、参数正确性、回复质量、安全性 5 维度综合评分；重点审核不可逆操作的确认流程与参数校验逻辑" data-en="Scored on 5 dimensions (reasoning, tool selection, parameter correctness, response quality, safety); focused on confirmation flows for irreversible operations">从思考过程、工具选择、参数正确性、回复质量、安全性 5 维度综合评分；重点审核不可逆操作的确认流程与参数校验逻辑</li>
-              <li data-zh="同期参与部分 SFT 指令-回复对数据编写，对不合格数据进行改写修正" data-en="Also authored SFT instruction-response pair data and rewrote non-conforming samples">同期参与部分 SFT 指令-回复对数据编写，对不合格数据进行改写修正</li>
-              <li data-zh="发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版；产出改写指南供团队使用，帮助团队标注效率提升约 30%" data-en="Identified systematic 'incomplete-parameter execution' issue, drove 2 rounds of rule iteration; authored a rewrite guide that boosted team annotation efficiency by ~30%">发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版；产出改写指南供团队使用，帮助团队标注效率提升约 30%</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section" id="projects">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="项目经历" data-en="Projects">项目经历</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="projects-accordion">
-
-        <!-- Project 01 -->
-        <div class="accordion-item" data-color="red">
-          <button class="accordion-header" type="button" aria-expanded="false">
-            <span class="accordion-number pixel-text">01</span>
-            <span class="accordion-title-group">
-              <span class="accordion-title" data-zh="文生视频多场景评测" data-en="Text-to-Video Multi-scenario Evaluation">文生视频多场景评测</span>
-              <span class="accordion-subtitle" data-zh="可灵 AI · 2025.08 – 2026.03" data-en="Kling AI · Aug 2025 – Mar 2026">可灵 AI · 2025.08 – 2026.03</span>
-            </span>
-            <span class="accordion-icon">＋</span>
+            <div class="tile-name">
+              <span data-zh="我的信息" data-en="My Profile">我的信息</span>
+            </div>
           </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              <p class="project-desc" data-zh="围绕文生视频生成任务，构建标准化多场景测试集并输出量化评估，为算法团队迭代决策提供数据支撑。" data-en="Built a standardized multi-scenario test set for text-to-video generation tasks and delivered quantitative evaluations to inform algorithm team decisions.">围绕文生视频生成任务，构建标准化多场景测试集并输出量化评估，为算法团队迭代决策提供数据支撑。</p>
-              <ul class="accordion-list">
-                <li data-zh="独立撰写 200 余条评测 Prompt，覆盖人物动作、自然场景、物体交互等多类生成任务" data-en="Authored 200+ evaluation prompts covering human actions, natural scenes, object interactions, and more">独立撰写 200 余条评测 Prompt，覆盖人物动作、自然场景、物体交互等多类生成任务</li>
-                <li data-zh="建立画面一致性、运动合理性、物理规律符合度、主体稳定性等维度的逐帧质量评估标准" data-en="Established frame-by-frame quality criteria on consistency, motion plausibility, physics, and subject stability">建立画面一致性、运动合理性、物理规律符合度、主体稳定性等维度的逐帧质量评估标准</li>
-                <li data-zh="同期积累文生图、多轮问答等文本类项目评测经验，具备多模态评测方案设计与 SOP 输出能力" data-en="Also built experience in text-to-image and multi-turn QA evaluation; capable of designing multimodal evaluation plans and authoring SOPs">同期积累文生图、多轮问答等文本类项目评测经验，具备多模态评测方案设计与 SOP 输出能力</li>
+
+          <button class="game-tile" data-game="02" data-color="blue">
+            <div class="tile-cover tile-cover-02">
+              <div class="tile-pattern"></div>
+              <div class="tile-icon">💼</div>
+              <div class="tile-num">02</div>
+            </div>
+            <div class="tile-name">
+              <span data-zh="工作经历" data-en="Experience">工作经历</span>
+            </div>
+          </button>
+
+          <button class="game-tile" data-game="03" data-color="red">
+            <div class="tile-cover tile-cover-03">
+              <div class="tile-pattern"></div>
+              <div class="tile-icon">📦</div>
+              <div class="tile-num">03</div>
+            </div>
+            <div class="tile-name">
+              <span data-zh="项目仓库" data-en="Projects">项目仓库</span>
+            </div>
+          </button>
+
+          <button class="game-tile tile-feature" data-game="04" data-color="blue">
+            <div class="tile-cover tile-cover-04">
+              <div class="tile-pattern"></div>
+              <div class="tile-icon">🎨</div>
+              <div class="tile-num">04</div>
+              <div class="tile-feature-tag">FEATURED</div>
+            </div>
+            <div class="tile-name">
+              <span data-zh="个人作品集" data-en="Portfolio">个人作品集</span>
+            </div>
+          </button>
+
+          <button class="game-tile" data-game="05" data-color="red">
+            <div class="tile-cover tile-cover-05">
+              <div class="tile-pattern"></div>
+              <div class="tile-icon">📡</div>
+              <div class="tile-num">05</div>
+            </div>
+            <div class="tile-name">
+              <span data-zh="联系方式" data-en="Contact">联系方式</span>
+            </div>
+          </button>
+
+        </div>
+
+        <!-- Bottom shortcuts (Switch home bar) -->
+        <div class="home-shortcuts">
+          <button class="shortcut-btn" title="News" data-shortcut="news">📰</button>
+          <button class="shortcut-btn" title="eShop" data-shortcut="shop">🛒</button>
+          <button class="shortcut-btn" title="Album" data-shortcut="album" onclick="enterGame('04')">🖼️</button>
+          <button class="shortcut-btn" title="Controllers" data-shortcut="controllers">🎮</button>
+          <button class="shortcut-btn" title="Settings" data-shortcut="settings">⚙️</button>
+          <button class="shortcut-btn" title="Sleep" data-shortcut="sleep">💤</button>
+        </div>
+
+        <!-- Key hints -->
+        <div class="key-hints">
+          <span class="hint"><span class="hint-key">A</span> <span data-zh="进入" data-en="Enter">进入</span></span>
+          <span class="hint"><span class="hint-key">←→</span> <span data-zh="选择" data-en="Select">选择</span></span>
+          <span class="hint"><span class="hint-key">+</span> <span data-zh="下一关" data-en="Next">下一关</span></span>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- GAME 01 · 我的信息                            -->
+      <!-- ============================================ -->
+      <section id="game01" class="screen-content game-screen" hidden>
+        <div class="game-header">
+          <button class="game-back" onclick="returnHome()">
+            <span class="key-hint-inline">B</span>
+            <span data-zh="返回" data-en="Back">返回</span>
+          </button>
+          <h2 class="game-title">
+            <span class="game-num-badge">GAME 01</span>
+            <span data-zh="我的信息" data-en="My Profile">我的信息</span>
+          </h2>
+        </div>
+
+        <div class="game-body">
+          <div class="profile-card">
+
+            <!-- Profile Header -->
+            <div class="profile-top">
+              <div class="profile-avatar">
+                <img src="头像.jpg" alt="贾旭">
+                <div class="avatar-ring"></div>
+                <div class="avatar-status"></div>
+              </div>
+              <div class="profile-info">
+                <div class="profile-name">
+                  <span class="name-zh">贾旭</span>
+                  <span class="name-divider">·</span>
+                  <span class="name-en">JIAXU</span>
+                </div>
+                <div class="profile-level">
+                  <span class="lv-badge">Lv.24</span>
+                  <span class="lv-title" data-zh="AI 训练师" data-en="AI Trainer">AI 训练师</span>
+                </div>
+                <div class="profile-stats-line">
+                  <span class="stat-icon">💼</span>
+                  <span data-zh="工作时长：11 个月" data-en="Work Duration: 11 months">工作时长：11 个月</span>
+                </div>
+                <div class="profile-stats-line">
+                  <span class="stat-icon">🎓</span>
+                  <span data-zh="计算机科学与技术 · 本科（2025届）" data-en="Computer Science · Bachelor (Class of 2025)">计算机科学与技术 · 本科（2025届）</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strengths -->
+            <div class="profile-section">
+              <h3 class="section-h">
+                <span class="h-icon">💡</span>
+                <span data-zh="个人优势" data-en="Strengths">个人优势</span>
+              </h3>
+              <ul class="bullet-list">
+                <li>
+                  <span class="bullet-mark">▸</span>
+                  <span data-zh="计算机科学专业背景，理解 NLP、大模型微调（SFT/RLHF）及多模态模型原理，能与算法团队高效对接技术需求" data-en="CS major; understands NLP, LLM fine-tuning (SFT/RLHF), and multimodal model principles — communicates effectively with algorithm teams">计算机科学专业背景，理解 NLP、大模型微调（SFT/RLHF）及多模态模型原理，能与算法团队高效对接技术需求</span>
+                </li>
+                <li>
+                  <span class="bullet-mark">▸</span>
+                  <span data-zh="两段 AI 模型评测实操经历（科大讯飞 + 可灵 AI），横跨 RLHF 标注、多模态评测、训练数据构建、Bad Case 分析与质检管理，具备从数据生产到质量管控的全链路经验" data-en="Two AI model-evaluation experiences (iFlytek + Kling AI) spanning RLHF, multimodal eval, training-data construction, Bad Case analysis, and QA — full pipeline from data production to quality control">两段 AI 模型评测实操经历（科大讯飞 + 可灵 AI），横跨 RLHF 标注、多模态评测、训练数据构建、Bad Case 分析与质检管理，具备从数据生产到质量管控的全链路经验</span>
+                </li>
+                <li>
+                  <span class="bullet-mark">▸</span>
+                  <span data-zh="熟练使用 Python（pandas/数据可视化）处理批量数据；具备 Prompt Engineering 能力，可设计意图识别 + 分类 PE 工作流实现训练数据生产自动化（人工介入比例从 100% 降至 6%）" data-en="Proficient with Python (pandas / data viz); PE engineering skills — designed intent-classification PE workflow that cut manual intervention from 100% to 6%">熟练使用 Python（pandas/数据可视化）处理批量数据；具备 Prompt Engineering 能力，可设计意图识别 + 分类 PE 工作流实现训练数据生产自动化（人工介入比例从 100% 降至 6%）</span>
+                </li>
               </ul>
-              <div class="project-highlights">
-                <span class="highlight-tag" data-zh="200+ 评测 Prompt" data-en="200+ Eval Prompts">200+ 评测 Prompt</span>
-                <span class="highlight-tag" data-zh="多维度量化评分" data-en="Multi-dimensional Scoring">多维度量化评分</span>
-                <span class="highlight-tag" data-zh="SOP 方案输出" data-en="SOP Deliverables">SOP 方案输出</span>
+            </div>
+
+            <!-- Self Assessment -->
+            <div class="profile-section">
+              <h3 class="section-h">
+                <span class="h-icon">✨</span>
+                <span data-zh="自我评价" data-en="Self-assessment">自我评价</span>
+              </h3>
+              <div class="trait-tags">
+                <span class="trait">🔍 <span data-zh="质量敏感" data-en="Quality-sensitive">质量敏感</span></span>
+                <span class="trait">🚀 <span data-zh="跨场景适应" data-en="Cross-scenario">跨场景适应</span></span>
+                <span class="trait">🛠️ <span data-zh="工具化思维" data-en="Tooling mindset">工具化思维</span></span>
+              </div>
+            </div>
+
+            <!-- Battle Records -->
+            <div class="profile-section">
+              <h3 class="section-h">
+                <span class="h-icon">⚔️</span>
+                <span data-zh="战斗记录" data-en="Battle Records">战斗记录</span>
+              </h3>
+              <div class="stat-bars">
+                <div class="stat-row">
+                  <span class="stat-label">⚙️ <span data-zh="工作流降本" data-en="Cost Reduction">工作流降本</span></span>
+                  <div class="stat-bar"><div class="stat-fill" data-pct="94"></div></div>
+                  <span class="stat-value">94%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">🚀 <span data-zh="团队效率提升" data-en="Team Efficiency">团队效率提升</span></span>
+                  <div class="stat-bar"><div class="stat-fill" data-pct="30"></div></div>
+                  <span class="stat-value">30%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">🎨 <span data-zh="个人作品集" data-en="Personal Works">个人作品集</span></span>
+                  <div class="stat-bar"><div class="stat-fill" data-pct="100"></div></div>
+                  <span class="stat-value">26</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="profile-section">
+              <h3 class="section-h">
+                <span class="h-icon">🏆</span>
+                <span data-zh="已解锁成就" data-en="Achievements">已解锁成就</span>
+                <span class="trophy-counter">(6 / ?)</span>
+              </h3>
+              <div class="trophy-grid">
+                <button class="trophy" onclick="showTrophy('software')" data-trophy="software">
+                  <span class="trophy-icon">📜</span>
+                  <span class="trophy-name" data-zh="软著证书" data-en="Software Copyright">软著证书</span>
+                </button>
+                <button class="trophy" onclick="showTrophy('journal')" data-trophy="journal">
+                  <span class="trophy-icon">📄</span>
+                  <span class="trophy-name" data-zh="期刊论文" data-en="Journal Paper">期刊论文</span>
+                </button>
+                <button class="trophy trophy-gold" onclick="showTrophy('cost')" data-trophy="cost">
+                  <span class="trophy-icon">⚙️</span>
+                  <span class="trophy-name" data-zh="工作流降本 94%" data-en="Cost Reduction 94%">工作流降本 94%</span>
+                </button>
+                <button class="trophy trophy-gold" onclick="showTrophy('efficiency')" data-trophy="efficiency">
+                  <span class="trophy-icon">🚀</span>
+                  <span class="trophy-name" data-zh="团队效率 +30%" data-en="Efficiency +30%">团队效率 +30%</span>
+                </button>
+                <button class="trophy" onclick="showTrophy('quality')" data-trophy="quality">
+                  <span class="trophy-icon">🎯</span>
+                  <span class="trophy-name" data-zh="质检准确率 95%+" data-en="QA Accuracy 95%+">质检准确率 95%+</span>
+                </button>
+                <button class="trophy" onclick="showTrophy('review')" data-trophy="review">
+                  <span class="trophy-icon">📊</span>
+                  <span class="trophy-name" data-zh="个人审核 20K+" data-en="Reviews 20K+">个人审核 20K+</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="key-hints key-hints-game">
+          <span class="hint"><span class="hint-key">B</span> <span data-zh="返回" data-en="Back">返回</span></span>
+          <span class="hint"><span class="hint-key">A</span> <span data-zh="查看奖杯" data-en="View Trophy">查看奖杯</span></span>
+          <span class="hint"><span class="hint-key">+</span> <span data-zh="下一关" data-en="Next">下一关</span></span>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- GAME 02 · 工作经历                            -->
+      <!-- ============================================ -->
+      <section id="game02" class="screen-content game-screen" hidden>
+        <div class="game-header">
+          <button class="game-back" onclick="returnHome()">
+            <span class="key-hint-inline">B</span>
+            <span data-zh="返回" data-en="Back">返回</span>
+          </button>
+          <h2 class="game-title">
+            <span class="game-num-badge">GAME 02</span>
+            <span data-zh="工作经历" data-en="Experience">工作经历</span>
+          </h2>
+        </div>
+
+        <div class="game-body">
+          <div class="timeline">
+
+            <article class="job-card job-card-blue">
+              <div class="job-header">
+                <div class="job-company">
+                  <span class="company-zh">可灵 AI（快手）</span>
+                  <span class="company-tag" data-zh="多模态评测工程师 / 质检负责人" data-en="Multimodal Evaluation Engineer / QA Lead">多模态评测工程师 / 质检负责人</span>
+                </div>
+                <div class="job-period">2025.08 — 2026.03</div>
+              </div>
+              <div class="job-section">
+                <h4>▶ <span data-zh="文生视频评测" data-en="Text-to-Video Evaluation">文生视频评测</span></h4>
+                <ul>
+                  <li data-zh="独立完成文生视频评测 Prompt 撰写，覆盖人物动作、自然场景、物体交互等多类任务，构建标准化多场景测试集" data-en="Independently authored T2V prompts covering human actions, natural scenes, object interactions; built standardized test set">独立完成文生视频评测 Prompt 撰写，覆盖人物动作、自然场景、物体交互等多类任务，构建标准化多场景测试集</li>
+                  <li data-zh="围绕可灵不同版本开展迭代对比评测，从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分，累计产出多份版本对比报告" data-en="Ran cross-version evaluation, scoring 1–5 across image quality, motion, physics, subject stability, and prompt alignment">围绕可灵不同版本开展迭代对比评测，从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分，累计产出多份版本对比报告</li>
+                </ul>
+              </div>
+              <div class="job-section">
+                <h4>▶ <span data-zh="标注团队培训与质检" data-en="Team Training & QA">标注团队培训与质检</span></h4>
+                <ul>
+                  <li data-zh="协助完成 80+ 人标注团队培训与质检管理，个人覆盖审核超 2 万条，执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上" data-en="Co-managed 80+ annotators; personally reviewed 20K+; refined tiered sampling QA — accuracy stayed 95%+">协助完成 80+ 人标注团队培训与质检管理，个人覆盖审核超 2 万条，执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上</li>
+                  <li data-zh="提出新人上岗考核方案并推动落地，缩短团队上手周期；同期积累文生图与多轮问答等多模态评测经验" data-en="Designed onboarding assessment, shortening ramp-up; gained T2I and multi-turn QA evaluation experience">提出新人上岗考核方案并推动落地，缩短团队上手周期；同期积累文生图与多轮问答等多模态评测经验</li>
+                </ul>
+              </div>
+              <div class="job-section">
+                <h4>▶ <span data-zh="训练数据构建与质量优化" data-en="Training Data & QA">训练数据构建与质量优化</span></h4>
+                <ul>
+                  <li data-zh="参与文生视频训练数据构建：负责 caption 标注与数据筛选，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗，保障入库数据质量" data-en="Built T2V training data: authored captions, multi-round cleaning on quality / motion / semantics">参与文生视频训练数据构建：负责 caption 标注与数据筛选，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗，保障入库数据质量</li>
+                  <li data-zh="主导 Bad Case 分析流程：系统性收集失败样本，按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队" data-en="Led Bad Case analysis: classified failure samples (limb distortion, physics violation, semantic drift) and reported to algo team">主导 Bad Case 分析流程：系统性收集失败样本，按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队</li>
+                </ul>
+              </div>
+              <div class="job-section job-section-highlight">
+                <h4>▶ <span data-zh="Caption 生产自动化提效" data-en="Caption Production Automation">Caption 生产自动化提效</span></h4>
+                <ul>
+                  <li data-zh="主导 caption 训练数据生产提效项目，迭代演进为「意图识别 + 分类 PE + 验证闭环」三阶段方案，将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP" data-en="Led caption-data efficiency project; evolved a three-stage pipeline (intent + category-specific PE + verification loop) cutting manual intervention from ~100% to ~6%; codified as team SOP">主导 caption 训练数据生产提效项目，迭代演进为「意图识别 + 分类 PE + 验证闭环」三阶段方案，将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="job-card job-card-red">
+              <div class="job-header">
+                <div class="job-company">
+                  <span class="company-zh">科大讯飞 · 医疗星火大模型团队</span>
+                  <span class="company-tag" data-zh="RLHF 项目实习生" data-en="RLHF Project Intern">RLHF 项目实习生</span>
+                </div>
+                <div class="job-period">2024.07 — 2024.09</div>
+              </div>
+              <div class="job-section">
+                <ul>
+                  <li data-zh="参与医疗 Agent RLHF 偏好标注，对模型双回复（Response A/B）进行多轮对话质量评判，覆盖挂号、查报告、查用药等场景，累计完成高质量标注 800+ 条；同期参与 SFT 数据编写" data-en="RLHF preference annotation for Medical Agent; judged Response A/B quality across scheduling/reports/prescriptions; 800+ quality annotations + SFT data">参与医疗 Agent RLHF 偏好标注，对模型双回复（Response A/B）进行多轮对话质量评判，覆盖挂号、查报告、查用药等场景，累计完成高质量标注 800+ 条；同期参与 SFT 数据编写</li>
+                  <li data-zh="从思考过程、工具选择、参数正确性、回复质量、安全性五个维度综合评分；重点审核不可逆操作的确认流程与参数校验逻辑，对不合格数据进行改写修正" data-en="Scored on 5 dimensions (reasoning, tool selection, params, quality, safety); focused on confirmation flows for irreversible operations">从思考过程、工具选择、参数正确性、回复质量、安全性五个维度综合评分；重点审核不可逆操作的确认流程与参数校验逻辑，对不合格数据进行改写修正</li>
+                  <li data-zh="发现「参数不完整直接执行」系统性问题；产出改写指南供团队使用，帮助团队标注效率提升约 30%" data-en="Identified 'incomplete-parameter execution' systematic issue; authored rewrite guide that boosted team efficiency by ~30%">发现「参数不完整直接执行」系统性问题；产出改写指南供团队使用，帮助团队标注效率提升约 30%</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="key-hints key-hints-game">
+          <span class="hint"><span class="hint-key">B</span> <span data-zh="返回" data-en="Back">返回</span></span>
+          <span class="hint"><span class="hint-key">+</span> <span data-zh="下一关" data-en="Next">下一关</span></span>
+          <span class="hint"><span class="hint-key">−</span> <span data-zh="上一关" data-en="Prev">上一关</span></span>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- GAME 03 · 项目仓库                            -->
+      <!-- ============================================ -->
+      <section id="game03" class="screen-content game-screen" hidden>
+        <div class="game-header">
+          <button class="game-back" onclick="returnHome()">
+            <span class="key-hint-inline">B</span>
+            <span data-zh="返回" data-en="Back">返回</span>
+          </button>
+          <h2 class="game-title">
+            <span class="game-num-badge">GAME 03</span>
+            <span data-zh="项目仓库" data-en="Projects">项目仓库</span>
+          </h2>
+        </div>
+
+        <div class="game-body">
+          <div class="project-list">
+
+            <details class="project-card project-red">
+              <summary>
+                <span class="project-num">01</span>
+                <span class="project-title">
+                  <span class="title-main" data-zh="文生视频多场景评测" data-en="Text-to-Video Multi-scenario Evaluation">文生视频多场景评测</span>
+                  <span class="title-sub" data-zh="可灵 AI · 2025.08 – 2026.03" data-en="Kling AI · Aug 2025 – Mar 2026">可灵 AI · 2025.08 – 2026.03</span>
+                </span>
+                <span class="project-toggle">＋</span>
+              </summary>
+              <div class="project-body">
+                <p data-zh="围绕文生视频生成任务，构建标准化多场景测试集并输出量化评估，为算法团队迭代决策提供数据支撑。" data-en="Built a standardized multi-scenario test set for T2V and delivered quantitative evaluations to inform algorithm decisions.">围绕文生视频生成任务，构建标准化多场景测试集并输出量化评估，为算法团队迭代决策提供数据支撑。</p>
+                <ul>
+                  <li data-zh="独立撰写评测 Prompt，覆盖人物动作、自然场景、物体交互等多类生成任务" data-en="Authored evaluation prompts covering human actions, natural scenes, object interactions">独立撰写评测 Prompt，覆盖人物动作、自然场景、物体交互等多类生成任务</li>
+                  <li data-zh="建立画面一致性、运动合理性、物理规律符合度、主体稳定性等维度的逐帧质量评估标准" data-en="Established frame-by-frame criteria for consistency, motion, physics, subject stability">建立画面一致性、运动合理性、物理规律符合度、主体稳定性等维度的逐帧质量评估标准</li>
+                  <li data-zh="同期积累文生图、多轮问答等文本类项目评测经验" data-en="Also gained T2I and multi-turn QA evaluation experience">同期积累文生图、多轮问答等文本类项目评测经验</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag" data-zh="多维度量化评分" data-en="Multi-dim Scoring">多维度量化评分</span>
+                  <span class="tag" data-zh="SOP 方案输出" data-en="SOP Output">SOP 方案输出</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="project-card project-blue">
+              <summary>
+                <span class="project-num">02</span>
+                <span class="project-title">
+                  <span class="title-main" data-zh="可灵版本迭代对比评测" data-en="Kling Version Iteration Comparison">可灵版本迭代对比评测</span>
+                  <span class="title-sub" data-zh="可灵 AI · 核心交付物" data-en="Kling AI · Core Deliverable">可灵 AI · 核心交付物</span>
+                </span>
+                <span class="project-toggle">＋</span>
+              </summary>
+              <div class="project-body">
+                <p data-zh="针对可灵不同版本的迭代效果开展系统性对比评测，帮助算法团队定位迭代收益与退化风险。" data-en="Systematic cross-version evaluation to identify iteration gains and regression risks.">针对可灵不同版本的迭代效果开展系统性对比评测，帮助算法团队定位迭代收益与退化风险。</p>
+                <ul>
+                  <li data-zh="从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分" data-en="1-5 scoring on image quality, motion, physics, subject stability, prompt alignment">从画面质量、运动合理性、物理规律、主体稳定性、Prompt 对齐度等维度按 1-5 分量化打分</li>
+                  <li data-zh="累计产出多份版本对比报告，明确每次迭代在各维度上的变化趋势与典型失败 case" data-en="Produced multiple version-comparison reports detailing per-dim trends and failure cases">累计产出多份版本对比报告，明确每次迭代在各维度上的变化趋势与典型失败 case</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag" data-zh="多维度量化打分" data-en="Multi-dim Scoring">多维度量化打分</span>
+                  <span class="tag" data-zh="支撑算法迭代" data-en="Algo Iteration">支撑算法迭代</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="project-card project-red">
+              <summary>
+                <span class="project-num">03</span>
+                <span class="project-title">
+                  <span class="title-main" data-zh="标注团队培训与质检管理" data-en="Annotation Team Training & QA">标注团队培训与质检管理</span>
+                  <span class="title-sub" data-zh="可灵 AI · 80+ 人团队" data-en="Kling AI · 80+ Team">可灵 AI · 80+ 人团队</span>
+                </span>
+                <span class="project-toggle">＋</span>
+              </summary>
+              <div class="project-body">
+                <p data-zh="协助项目负责人完成标注团队培训与质检管理，覆盖文本标注与多模态评测两类业务线。" data-en="Co-managed training and QA for annotation team across text and multimodal lines.">协助项目负责人完成标注团队培训与质检管理，覆盖文本标注与多模态评测两类业务线。</p>
+                <ul>
+                  <li data-zh="团队规模累计超过 80 人，主要负责质检抽审环节，个人覆盖审核超过 2 万条" data-en="Team scaled 80+; personally reviewed 20,000+ items">团队规模累计超过 80 人，主要负责质检抽审环节，个人覆盖审核超过 2 万条</li>
+                  <li data-zh="执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上" data-en="Tiered sampling QA; delivery accuracy stayed 95%+">执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上</li>
+                  <li data-zh="提出新人上岗考核方案并推动落地，缩短团队上手周期" data-en="Designed onboarding assessment, shortened ramp-up">提出新人上岗考核方案并推动落地，缩短团队上手周期</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag">80+ <span data-zh="人团队" data-en="Team">人团队</span></span>
+                  <span class="tag">20K+ <span data-zh="审核量" data-en="Reviewed">审核量</span></span>
+                  <span class="tag">95%+ <span data-zh="准确率" data-en="Accuracy">准确率</span></span>
+                </div>
+              </div>
+            </details>
+
+            <details class="project-card project-blue project-feature">
+              <summary>
+                <span class="project-num">04</span>
+                <span class="project-title">
+                  <span class="title-main" data-zh="Caption 训练数据构建与自动化提效" data-en="Caption Training Data & Automation">Caption 训练数据构建与自动化提效</span>
+                  <span class="title-sub" data-zh="可灵 AI · 核心交付物" data-en="Kling AI · Core Deliverable">可灵 AI · 核心交付物</span>
+                </span>
+                <span class="project-toggle">＋</span>
+              </summary>
+              <div class="project-body">
+                <p data-zh="主导文生视频训练数据构建与提效流程，从 caption 撰写、Bad Case 归因到 PE 工作流自动化，将人工介入比例从近 100% 降至约 6%。" data-en="Led T2V training data construction and efficiency optimization — from caption authoring through Bad Case attribution to PE-driven automation, reducing manual intervention from ~100% to ~6%.">主导文生视频训练数据构建与提效流程，从 caption 撰写、Bad Case 归因到 PE 工作流自动化，将人工介入比例从近 100% 降至约 6%。</p>
+                <ul>
+                  <li data-zh="负责 caption 标注与数据筛选：撰写高质量描述文本，按画面质量、运动流畅度、语义匹配度执行多轮数据清洗" data-en="Authored captions; multi-round cleaning on quality, motion smoothness, semantic matching">负责 caption 标注与数据筛选：撰写高质量描述文本，按画面质量、运动流畅度、语义匹配度执行多轮数据清洗</li>
+                  <li data-zh="主导 Bad Case 分析流程：按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队" data-en="Led Bad Case analysis: classified by issue type; reports drove targeted iterations">主导 Bad Case 分析流程：按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队</li>
+                  <li data-zh="设计「意图识别 + 分类 PE + 验证闭环」三阶段 PE 工作流，基于日志数据增量对比持续评估各类 Prompt 模板效果" data-en="Designed 3-stage PE pipeline (intent + category PE + verification loop); continuous evaluation via log-based comparison">设计「意图识别 + 分类 PE + 验证闭环」三阶段 PE 工作流，基于日志数据增量对比持续评估各类 Prompt 模板效果</li>
+                  <li data-zh="将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP，新场景复用仅需调整分类规则与 Prompt 模板" data-en="Cut manual intervention from ~100% to ~6%; codified as team SOP — new scenarios reuse pipeline by adjusting rules & templates only">将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP，新场景复用仅需调整分类规则与 Prompt 模板</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag tag-highlight" data-zh="人工介入 100% → 6%" data-en="Manual: 100% → 6%">人工介入 100% → 6%</span>
+                  <span class="tag" data-zh="三阶段 PE 工作流" data-en="3-stage PE Pipeline">三阶段 PE 工作流</span>
+                  <span class="tag" data-zh="团队 SOP" data-en="Team SOP">团队 SOP</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="project-card project-red">
+              <summary>
+                <span class="project-num">05</span>
+                <span class="project-title">
+                  <span class="title-main" data-zh="医疗 Agent RLHF 偏好标注" data-en="Medical Agent RLHF Annotation">医疗 Agent RLHF 偏好标注</span>
+                  <span class="title-sub" data-zh="科大讯飞 · 2024.07 – 2024.09" data-en="iFlytek · Jul 2024 – Sep 2024">科大讯飞 · 2024.07 – 2024.09</span>
+                </span>
+                <span class="project-toggle">＋</span>
+              </summary>
+              <div class="project-body">
+                <p data-zh="为医疗星火大模型的智能助手 Agent 构建高质量 RLHF 偏好数据，覆盖挂号预约、查报告、查用药等高频医疗场景。" data-en="High-quality RLHF preference data for Medical Spark Agent — appointments, reports, prescriptions.">为医疗星火大模型的智能助手 Agent 构建高质量 RLHF 偏好数据，覆盖挂号预约、查报告、查用药等高频医疗场景。</p>
+                <ul>
+                  <li data-zh="对模型双回复（Response A/B）进行多轮对话质量评判，累计完成高质量标注 800+ 条" data-en="Judged Response A/B; 800+ quality annotations">对模型双回复（Response A/B）进行多轮对话质量评判，累计完成高质量标注 800+ 条</li>
+                  <li data-zh="从思考过程、工具选择、参数正确性、回复质量、安全性 5 维度综合评分" data-en="5-dim scoring: reasoning / tool / params / quality / safety">从思考过程、工具选择、参数正确性、回复质量、安全性 5 维度综合评分</li>
+                  <li data-zh="发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版，团队效率提升约 30%" data-en="Found systematic issue, drove 2 rule iterations, +30% team efficiency">发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版，团队效率提升约 30%</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag">800+ <span data-zh="高质量标注" data-en="Annotations">高质量标注</span></span>
+                  <span class="tag" data-zh="规则迭代 2 版" data-en="2 Iterations">规则迭代 2 版</span>
+                  <span class="tag tag-highlight" data-zh="团队效率 +30%" data-en="+30% Efficiency">团队效率 +30%</span>
+                </div>
+              </div>
+            </details>
+
+          </div>
+        </div>
+        <div class="key-hints key-hints-game">
+          <span class="hint"><span class="hint-key">B</span> <span data-zh="返回" data-en="Back">返回</span></span>
+          <span class="hint"><span class="hint-key">+</span> <span data-zh="下一关" data-en="Next">下一关</span></span>
+          <span class="hint"><span class="hint-key">−</span> <span data-zh="上一关" data-en="Prev">上一关</span></span>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- GAME 04 · 个人作品集                          -->
+      <!-- ============================================ -->
+      <section id="game04" class="screen-content game-screen" hidden>
+        <div class="game-header">
+          <button class="game-back" onclick="returnHome()">
+            <span class="key-hint-inline">B</span>
+            <span data-zh="返回" data-en="Back">返回</span>
+          </button>
+          <h2 class="game-title">
+            <span class="game-num-badge">GAME 04</span>
+            <span data-zh="个人作品集" data-en="Portfolio">个人作品集</span>
+          </h2>
+          <div class="album-tabs">
+            <button class="album-tab active" data-tab="featured" onclick="switchAlbumTab('featured')">
+              <span data-zh="🎞️ 精选" data-en="🎞️ Featured">🎞️ 精选</span>
+              <span class="tab-count">6</span>
+            </button>
+            <button class="album-tab" data-tab="full" onclick="switchAlbumTab('full')">
+              <span data-zh="📖 完整作品集" data-en="📖 Full Portfolio">📖 完整作品集</span>
+              <span class="tab-count">20</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="game-body">
+          <!-- Tab 1: Featured 6 works -->
+          <div class="album-content" id="albumFeatured">
+            <div class="album-grid">
+
+              <article class="album-item" onclick="openWork('01')">
+                <div class="album-thumb">
+                  <video src="Portfolio/01-sakura.mp4" muted loop playsinline preload="metadata"></video>
+                  <span class="album-badge album-badge-video">VIDEO</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="樱花飘落特写" data-en="Sakura Petals">樱花飘落特写</span>
+                </div>
+              </article>
+
+              <article class="album-item" onclick="openWork('02')">
+                <div class="album-thumb">
+                  <video src="Portfolio/02-rainy-window.mp4" muted loop playsinline preload="metadata"></video>
+                  <span class="album-badge album-badge-video">VIDEO</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="雨夜窗前的人" data-en="By the Rainy Window">雨夜窗前的人</span>
+                </div>
+              </article>
+
+              <article class="album-item" onclick="openWork('03')">
+                <div class="album-thumb">
+                  <img src="Portfolio/03-ink-mountain.png" alt="东方水墨山水" loading="lazy">
+                  <span class="album-badge album-badge-image">IMAGE</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="东方水墨山水" data-en="Ink Mountain">东方水墨山水</span>
+                </div>
+              </article>
+
+              <article class="album-item" onclick="openWork('04')">
+                <div class="album-thumb">
+                  <img src="Portfolio/04-nordic-forest.png" alt="北欧雾林油画" loading="lazy">
+                  <span class="album-badge album-badge-image">IMAGE</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="北欧雾林油画" data-en="Nordic Forest">北欧雾林油画</span>
+                </div>
+              </article>
+
+              <article class="album-item" onclick="openWork('05')">
+                <div class="album-thumb">
+                  <img src="Portfolio/05-street-bw.png" alt="黑白人文街拍" loading="lazy">
+                  <span class="album-badge album-badge-image">IMAGE</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="黑白人文街拍" data-en="B&W Street">黑白人文街拍</span>
+                </div>
+              </article>
+
+              <article class="album-item" onclick="openWork('06')">
+                <div class="album-thumb">
+                  <img src="Portfolio/06-still-life.png" alt="极简静物" loading="lazy">
+                  <span class="album-badge album-badge-image">IMAGE</span>
+                </div>
+                <div class="album-name">
+                  <span data-zh="极简静物 fine-art" data-en="Minimal Still Life">极简静物 fine-art</span>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Tab 2: Full PDF Portfolio -->
+          <div class="album-content" id="albumFull" hidden>
+            <div class="pdf-reader-wrap">
+              <div class="pdf-info-bar">
+                💡 <span data-zh="完整作品集 20 件 · 「精选」Tab 还有另外 6 件视频与图像作品" data-en="20 works · See &quot;Featured&quot; tab for 6 additional video/image works">完整作品集 20 件 · 「精选」Tab 还有另外 6 件视频与图像作品</span>
+              </div>
+              <div class="pdf-canvas-wrap">
+                <canvas id="pdfCanvas"></canvas>
+                <div class="pdf-loading" id="pdfLoading">
+                  <span data-zh="加载中..." data-en="Loading...">加载中...</span>
+                </div>
+              </div>
+              <div class="pdf-controls">
+                <button class="pdf-btn" id="pdfPrev">◀ <span data-zh="上一页" data-en="Prev">上一页</span></button>
+                <span class="pdf-page-info">
+                  <span data-zh="第" data-en="Page">第</span>
+                  <span id="pdfPageCurrent">1</span>
+                  /
+                  <span id="pdfPageTotal">--</span>
+                  <span data-zh="页" data-en="">页</span>
+                </span>
+                <button class="pdf-btn" id="pdfNext"><span data-zh="下一页" data-en="Next">下一页</span> ▶</button>
+                <a class="pdf-btn pdf-download" href="图像作品集.pdf" download="贾旭_作品集.pdf">
+                  ⬇ <span data-zh="下载" data-en="Download">下载</span>
+                </a>
               </div>
             </div>
           </div>
         </div>
+        <div class="key-hints key-hints-game">
+          <span class="hint"><span class="hint-key">B</span> <span data-zh="返回" data-en="Back">返回</span></span>
+          <span class="hint"><span class="hint-key">A</span> <span data-zh="查看" data-en="View">查看</span></span>
+          <span class="hint"><span class="hint-key">X</span> <span data-zh="复制Prompt" data-en="Copy Prompt">复制Prompt</span></span>
+        </div>
+      </section>
 
-        <!-- Project 02 -->
-        <div class="accordion-item" data-color="blue">
-          <button class="accordion-header" type="button" aria-expanded="false">
-            <span class="accordion-number pixel-text">02</span>
-            <span class="accordion-title-group">
-              <span class="accordion-title" data-zh="可灵版本迭代对比评测" data-en="Kling Version Iteration Comparison">可灵版本迭代对比评测</span>
-              <span class="accordion-subtitle" data-zh="可灵 AI · 核心交付物" data-en="Kling AI · Core Deliverable">可灵 AI · 核心交付物</span>
-            </span>
-            <span class="accordion-icon">＋</span>
+      <!-- ============================================ -->
+      <!-- GAME 05 · 联系方式                            -->
+      <!-- ============================================ -->
+      <section id="game05" class="screen-content game-screen" hidden>
+        <div class="game-header">
+          <button class="game-back" onclick="returnHome()">
+            <span class="key-hint-inline">B</span>
+            <span data-zh="返回" data-en="Back">返回</span>
           </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              <p class="project-desc" data-zh="针对可灵不同版本的迭代效果开展系统性对比评测，帮助算法团队定位迭代收益与退化风险。" data-en="Systematic comparison evaluation across Kling versions, helping the algorithm team identify iteration gains and regression risks.">针对可灵不同版本的迭代效果开展系统性对比评测，帮助算法团队定位迭代收益与退化风险。</p>
-              <ul class="accordion-list">
-                <li data-zh="从画面质量、运动合理性、物理规律符合度、主体稳定性、语义理解、Prompt 对齐度、时序连贯性 7 个维度按 1-5 分量化打分" data-en="Quantitative 1–5 scoring on 7 dimensions: image quality, motion, physics, subject stability, semantics, prompt alignment, temporal coherence">从 7 个维度按 1-5 分量化打分：画面质量、运动合理性、物理规律、主体稳定性、语义理解、Prompt 对齐、时序连贯性</li>
-                <li data-zh="累计产出 8 份版本对比报告，明确每次迭代在各维度上的变化趋势与典型失败 case" data-en="Produced 8 version-comparison reports detailing per-dimension trends and representative failure cases across iterations">累计产出 8 份版本对比报告，明确每次迭代在各维度上的变化趋势与典型失败 case</li>
-                <li data-zh="评测结论直接反哺算法团队，作为版本发布与调参的参考依据" data-en="Evaluation conclusions fed directly back to the algorithm team, informing release decisions and hyperparameter tuning">评测结论直接反哺算法团队，作为版本发布与调参的参考依据</li>
-              </ul>
-              <div class="project-highlights">
-                <span class="highlight-tag" data-zh="7 维度量化打分" data-en="7-dim Scoring">7 维度量化打分</span>
-                <span class="highlight-tag" data-zh="8 份对比报告" data-en="8 Comparison Reports">8 份对比报告</span>
-                <span class="highlight-tag" data-zh="支撑算法迭代" data-en="Algorithm Iteration Support">支撑算法迭代</span>
+          <h2 class="game-title">
+            <span class="game-num-badge">GAME 05</span>
+            <span data-zh="联系方式" data-en="Contact">联系方式</span>
+          </h2>
+        </div>
+
+        <div class="game-body">
+          <div class="friend-card">
+            <div class="friend-card-header">
+              <span class="friend-icon">👥</span>
+              <span data-zh="好友信息" data-en="Friend Info">好友信息</span>
+            </div>
+            <div class="friend-avatar">
+              <img src="头像.jpg" alt="贾旭">
+            </div>
+            <div class="friend-name">贾旭 · JIAXU</div>
+            <div class="friend-status" data-zh="在线 · 寻找新关卡" data-en="Online · Looking for new quests">在线 · 寻找新关卡</div>
+
+            <div class="friend-info-list">
+              <div class="info-row">
+                <span class="info-icon">📱</span>
+                <span class="info-label" data-zh="电话" data-en="Phone">电话</span>
+                <span class="info-value">158-4546-1696</span>
               </div>
+              <div class="info-row">
+                <span class="info-icon">📧</span>
+                <span class="info-label" data-zh="邮箱" data-en="Email">邮箱</span>
+                <span class="info-value">2037414901@qq.com</span>
+              </div>
+              <div class="info-row">
+                <span class="info-icon">💬</span>
+                <span class="info-label" data-zh="微信" data-en="WeChat">微信</span>
+                <span class="info-value">x2037414901</span>
+              </div>
+              <div class="info-row">
+                <span class="info-icon">🕐</span>
+                <span class="info-label" data-zh="到岗时间" data-en="Availability">到岗时间</span>
+                <span class="info-value" data-zh="一周内" data-en="Within 1 week">一周内</span>
+              </div>
+            </div>
+
+            <div class="friend-code">
+              <span class="fc-label">FRIEND CODE</span>
+              <span class="fc-value">SW-2025-2037-4149</span>
             </div>
           </div>
         </div>
-
-        <!-- Project 03 -->
-        <div class="accordion-item" data-color="red">
-          <button class="accordion-header" type="button" aria-expanded="false">
-            <span class="accordion-number pixel-text">03</span>
-            <span class="accordion-title-group">
-              <span class="accordion-title" data-zh="标注团队培训与质检管理" data-en="Annotation Team Training & QA Management">标注团队培训与质检管理</span>
-              <span class="accordion-subtitle" data-zh="可灵 AI · 80+ 人团队" data-en="Kling AI · Team of 80+">可灵 AI · 80+ 人团队</span>
-            </span>
-            <span class="accordion-icon">＋</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              <p class="project-desc" data-zh="协助项目负责人完成标注团队培训与质检管理，覆盖文本标注与多模态评测两类业务线。" data-en="Co-managed training and QA for the annotation team, spanning both text annotation and multimodal evaluation workstreams.">协助项目负责人完成标注团队培训与质检管理，覆盖文本标注与多模态评测两类业务线。</p>
-              <ul class="accordion-list">
-                <li data-zh="团队规模累计超过 80 人，主要负责质检抽审环节，个人覆盖审核超过 2 万条" data-en="Team scaled beyond 80 members; personally reviewed 20,000+ items as QA spot-checker">团队规模累计超过 80 人，主要负责质检抽审环节，个人覆盖审核超过 2 万条</li>
-                <li data-zh="执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上" data-en="Executed and refined tiered sampling QA; delivery accuracy stayed consistently above 95%">执行并优化分层抽检机制，项目交付准确率长期稳定在 95% 以上</li>
-                <li data-zh="定期汇总高频错误类型并归类分析，持续优化标注规范与培训材料" data-en="Regularly summarized high-frequency errors and continuously refined annotation guidelines and training materials">定期汇总高频错误类型并归类分析，持续优化标注规范与培训材料</li>
-                <li data-zh="提出新人上岗考核方案并推动落地，缩短团队上手周期" data-en="Designed and rolled out an onboarding assessment, shortening ramp-up time for new members">提出新人上岗考核方案并推动落地，缩短团队上手周期</li>
-              </ul>
-              <div class="project-highlights">
-                <span class="highlight-tag" data-zh="80+ 人团队" data-en="80+ Team">80+ 人团队</span>
-                <span class="highlight-tag" data-zh="2 万+ 审核量" data-en="20K+ Reviewed">2 万+ 审核量</span>
-                <span class="highlight-tag" data-zh="95%+ 交付准确率" data-en="95%+ Accuracy">95%+ 交付准确率</span>
-                <span class="highlight-tag" data-zh="上岗考核体系" data-en="Onboarding System">上岗考核体系</span>
-              </div>
-            </div>
-          </div>
+        <div class="key-hints key-hints-game">
+          <span class="hint"><span class="hint-key">B</span> <span data-zh="返回" data-en="Back">返回</span></span>
+          <span class="hint"><span class="hint-key">−</span> <span data-zh="上一关" data-en="Prev">上一关</span></span>
         </div>
+      </section>
 
-        <!-- Project 04: Caption Auto-pipeline -->
-        <div class="accordion-item" data-color="blue">
-          <button class="accordion-header" type="button" aria-expanded="false">
-            <span class="accordion-number pixel-text">04</span>
-            <span class="accordion-title-group">
-              <span class="accordion-title" data-zh="Caption 训练数据构建与自动化提效" data-en="Caption Training-data Construction & Automation">Caption 训练数据构建与自动化提效</span>
-              <span class="accordion-subtitle" data-zh="可灵 AI · 核心交付物" data-en="Kling AI · Core Deliverable">可灵 AI · 核心交付物</span>
-            </span>
-            <span class="accordion-icon">＋</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              <p class="project-desc" data-zh="主导文生视频训练数据构建与提效流程，从 caption 撰写、Bad Case 归因到 PE 工作流自动化，将人工介入比例从近 100% 降至约 6%。" data-en="Led the construction and efficiency optimization of T2V training data — from caption authoring and Bad Case attribution to PE-driven automation, reducing manual intervention from ~100% to ~6%.">主导文生视频训练数据构建与提效流程，从 caption 撰写、Bad Case 归因到 PE 工作流自动化，将人工介入比例从近 100% 降至约 6%。</p>
-              <ul class="accordion-list">
-                <li data-zh="负责 caption 标注与数据筛选：对原始视频素材撰写高质量描述文本，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗" data-en="Authored high-quality caption descriptions for raw video samples; ran multi-round cleaning on image quality, motion smoothness, and semantic matching">负责 caption 标注与数据筛选：对原始视频素材撰写高质量描述文本，按画面质量、运动流畅度、语义匹配度等标准执行多轮数据清洗</li>
-                <li data-zh="主导 Bad Case 分析流程：按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队，推动针对性模型迭代" data-en="Led Bad Case analysis: classified failure samples by issue type (limb distortion, physics violation, semantic drift); delivered reports that drove targeted model iterations">主导 Bad Case 分析流程：按肢体畸变、物理穿模、语义偏离等问题类型分类归档，产出 Bad Case 报告反馈算法团队，推动针对性模型迭代</li>
-                <li data-zh="设计「意图识别 + 分类 PE + 验证闭环」三阶段 PE 工作流，基于日志数据增量对比持续评估各类 Prompt 模板效果" data-en="Designed a three-stage PE pipeline (intent recognition + category-specific PE + verification loop); continuously evaluated prompt-template effectiveness via log-based incremental comparison">设计「意图识别 + 分类 PE + 验证闭环」三阶段 PE 工作流，基于日志数据增量对比持续评估各类 Prompt 模板效果</li>
-                <li data-zh="将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP，新场景复用仅需调整分类规则与 Prompt 模板" data-en="Cut manual intervention from ~100% to ~6%; codified the workflow as team SOP — new scenarios reuse the pipeline by adjusting classification rules and prompt templates only">将人工介入比例从近 100% 降至约 6%，方案沉淀为团队标准化 SOP，新场景复用仅需调整分类规则与 Prompt 模板</li>
-              </ul>
-              <div class="project-highlights">
-                <span class="highlight-tag" data-zh="人工介入 100% → 6%" data-en="Manual: 100% → 6%">人工介入 100% → 6%</span>
-                <span class="highlight-tag" data-zh="三阶段 PE 工作流" data-en="3-stage PE Pipeline">三阶段 PE 工作流</span>
-                <span class="highlight-tag" data-zh="Bad Case 归因体系" data-en="Bad Case Attribution">Bad Case 归因体系</span>
-                <span class="highlight-tag" data-zh="团队 SOP 沉淀" data-en="Team SOP">团队 SOP 沉淀</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div><!-- /.screen -->
 
-        <!-- Project 05 -->
-        <div class="accordion-item" data-color="red">
-          <button class="accordion-header" type="button" aria-expanded="false">
-            <span class="accordion-number pixel-text">05</span>
-            <span class="accordion-title-group">
-              <span class="accordion-title" data-zh="医疗 Agent RLHF 偏好标注" data-en="Medical Agent RLHF Preference Annotation">医疗 Agent RLHF 偏好标注</span>
-              <span class="accordion-subtitle" data-zh="科大讯飞 · 2024.07 – 2024.09" data-en="iFlytek · Jul 2024 – Sep 2024">科大讯飞 · 2024.07 – 2024.09</span>
-            </span>
-            <span class="accordion-icon">＋</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">
-              <p class="project-desc" data-zh="为医疗星火大模型的智能助手 Agent 构建高质量 RLHF 偏好数据，覆盖挂号预约、查报告、查用药等高频医疗场景。" data-en="Built high-quality RLHF preference data for the Medical Spark LLM Agent, covering appointments, medical reports, and prescription queries.">为医疗星火大模型的智能助手 Agent 构建高质量 RLHF 偏好数据，覆盖挂号预约、查报告、查用药等高频医疗场景。</p>
-              <ul class="accordion-list">
-                <li data-zh="对模型两组回复（Response A/B）进行多轮对话质量评判，累计完成高质量标注 800+ 条" data-en="Judged multi-turn dialogue quality between paired responses (A/B); completed 800+ high-quality annotations">对模型两组回复（Response A/B）进行多轮对话质量评判，累计完成高质量标注 800+ 条</li>
-                <li data-zh="从思考过程、工具选择、参数正确性、回复质量、安全性 5 个维度综合评分" data-en="Scored on 5 dimensions: reasoning, tool selection, parameter correctness, response quality, safety">从思考过程、工具选择、参数正确性、回复质量、安全性 5 个维度综合评分</li>
-                <li data-zh="重点审核不可逆操作的确认流程与参数校验逻辑，对不合格数据进行改写修正" data-en="Focused on confirmation flows for irreversible operations and parameter validation; rewrote non-compliant samples">重点审核不可逆操作的确认流程与参数校验逻辑，对不合格数据进行改写修正</li>
-                <li data-zh="发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版，产出改写指南供团队使用" data-en="Identified systematic 'incomplete-parameter execution' issue, drove 2 rounds of rule iteration, authored team-wide rewrite guide">发现「参数不完整直接执行」系统性问题，推动规则迭代 2 版，产出改写指南供团队使用</li>
-                <li data-zh="同期参与部分 SFT 指令-回复对数据编写" data-en="Also authored SFT instruction-response pair data">同期参与部分 SFT 指令-回复对数据编写</li>
-              </ul>
-              <div class="project-highlights">
-                <span class="highlight-tag" data-zh="800+ 高质量标注" data-en="800+ Quality Annotations">800+ 高质量标注</span>
-                <span class="highlight-tag" data-zh="规则迭代 2 版" data-en="2 Rule Iterations">规则迭代 2 版</span>
-                <span class="highlight-tag" data-zh="团队效率 +30%" data-en="+30% Team Efficiency">团队效率 +30%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <!-- Bottom console buttons -->
+    <div class="console-buttons">
+      <button class="console-btn" id="btnHome" title="HOME">⌂</button>
+      <button class="console-btn" id="btnCapture" title="Capture (Save as PDF)">⊡</button>
+      <button class="console-btn" id="btnMinus" title="Previous Game">−</button>
+      <button class="console-btn" id="btnPlus" title="Next Game">+</button>
+      <button class="console-btn" id="btnPower" title="Long Press to Reboot">⏻</button>
     </div>
-  </section>
 
-  <!-- Personal Works -->
-  <section class="section" id="portfolio">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="个人作品集" data-en="Personal Works">个人作品集</span>
-      </h2>
-      <p class="works-intro" data-zh="使用 AI 工具进行的视觉与影像创作。每件作品都附带完整 Prompt，体现我对模型表达边界与提示词工程的实践理解。" data-en="Visual and motion experiments crafted with AI tools. Each piece comes with a full prompt, reflecting my hands-on understanding of model expressiveness and prompt engineering.">使用 AI 工具进行的视觉与影像创作。每件作品都附带完整 Prompt，体现我对模型表达边界与提示词工程的实践理解。</p>
+  </div><!-- /.console -->
 
-      <div class="works-grid">
-
-        <!-- Work 01: Sakura -->
-        <article class="work-card">
-          <div class="work-media">
-            <video src="Portfolio/01-sakura.mp4" muted loop playsinline preload="metadata" controls></video>
-            <span class="work-badge work-badge-video">VIDEO</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="樱花飘落特写" data-en="Sakura Petals">樱花飘落特写</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('01')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Work 02: Rainy Window -->
-        <article class="work-card">
-          <div class="work-media">
-            <video src="Portfolio/02-rainy-window.mp4" muted loop playsinline preload="metadata" controls></video>
-            <span class="work-badge work-badge-video">VIDEO</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="雨夜窗前的人" data-en="By the Rainy Window">雨夜窗前的人</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('02')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Work 03: Ink Mountain -->
-        <article class="work-card">
-          <div class="work-media">
-            <img src="Portfolio/03-ink-mountain.png" alt="东方水墨山水" loading="lazy">
-            <span class="work-badge work-badge-image">IMAGE</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="东方水墨山水" data-en="Ink Mountain Landscape">东方水墨山水</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('03')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Work 04: Nordic Forest -->
-        <article class="work-card">
-          <div class="work-media">
-            <img src="Portfolio/04-nordic-forest.png" alt="北欧雾林油画" loading="lazy">
-            <span class="work-badge work-badge-image">IMAGE</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="北欧雾林油画" data-en="Nordic Misty Forest">北欧雾林油画</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('04')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Work 05: Street BW -->
-        <article class="work-card">
-          <div class="work-media">
-            <img src="Portfolio/05-street-bw.png" alt="黑白人文街拍" loading="lazy">
-            <span class="work-badge work-badge-image">IMAGE</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="黑白人文街拍" data-en="Black & White Street">黑白人文街拍</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('05')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- Work 06: Still Life -->
-        <article class="work-card">
-          <div class="work-media">
-            <img src="Portfolio/06-still-life.png" alt="极简静物 fine-art" loading="lazy">
-            <span class="work-badge work-badge-image">IMAGE</span>
-          </div>
-          <div class="work-info">
-            <h3 class="work-title" data-zh="极简静物 fine-art" data-en="Minimal Still Life">极简静物 fine-art</h3>
-            <button class="work-prompt-btn" type="button" onclick="openPromptModal('06')">
-              <span class="work-prompt-icon">▶</span>
-              <span data-zh="查看 Prompt" data-en="View Prompt">查看 Prompt</span>
-            </button>
-          </div>
-        </article>
-
-      </div>
+  <!-- ===== TROPHY MODAL ===== -->
+  <div class="modal-overlay" id="trophyOverlay" hidden onclick="closeTrophy(event)">
+    <div class="modal-card trophy-modal">
+      <button class="modal-close" onclick="closeTrophy(event)">×</button>
+      <div class="trophy-modal-icon" id="trophyModalIcon">🏆</div>
+      <h3 class="trophy-modal-title" id="trophyModalTitle">Trophy</h3>
+      <div class="trophy-modal-body" id="trophyModalBody"></div>
+      <div class="trophy-modal-image" id="trophyModalImage"></div>
     </div>
-  </section>
+  </div>
 
-  <!-- Prompt Modal -->
-  <div class="prompt-overlay" id="promptOverlay" onclick="closePromptModal(event)">
-    <div class="prompt-content">
-      <button class="prompt-close" onclick="closePromptModal(event)" aria-label="Close">&times;</button>
-      <div class="prompt-body">
-        <div class="prompt-media-wrap" id="promptMediaWrap"></div>
-        <div class="prompt-text-wrap">
-          <span class="prompt-label pixel-text">PROMPT</span>
-          <h3 class="prompt-title" id="promptTitle"></h3>
-          <div class="prompt-text" id="promptText"></div>
-          <button class="prompt-copy-btn" type="button" onclick="copyPromptText()">
-            <span data-zh="复制 Prompt" data-en="Copy Prompt" id="copyBtnLabel">复制 Prompt</span>
+  <!-- ===== WORK DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="workOverlay" hidden onclick="closeWork(event)">
+    <div class="modal-card work-modal">
+      <button class="modal-close" onclick="closeWork(event)">×</button>
+      <div class="work-modal-body">
+        <div class="work-modal-media" id="workModalMedia"></div>
+        <div class="work-modal-text">
+          <span class="work-modal-tag">PROMPT</span>
+          <h3 class="work-modal-title" id="workModalTitle"></h3>
+          <div class="work-modal-prompt" id="workModalPrompt"></div>
+          <button class="work-modal-copy" onclick="copyWorkPrompt()">
+            <span data-zh="复制 Prompt" data-en="Copy Prompt" id="workCopyLabel">复制 Prompt</span>
           </button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ===== POWER OFF OVERLAY ===== -->
+  <div class="power-overlay" id="powerOverlay" hidden></div>
 
-  <!-- Publications -->
-  <section class="section section-alt" id="publications">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="学术成果" data-en="Publications">学术成果</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="pub-grid">
-        <div class="pub-card pub-patent">
-          <div class="pub-icon pixel-text">©</div>
-          <div class="pub-type" data-zh="软件著作权" data-en="Software Copyright">软件著作权</div>
-          <h3 data-zh="智能计算资源调度系统 V1.0" data-en="Intelligent Computing Resource Scheduling System V1.0">智能计算资源调度系统 V1.0</h3>
-          <div class="pub-meta">
-            <p data-zh="著作权人：贾旭、孟凡超" data-en="Authors: Jia Xu, Meng Fanchao">著作权人：贾旭、孟凡超</p>
-            <p data-zh="登记号：2025SR1743676" data-en="Reg. No.: 2025SR1743676">登记号：2025SR1743676</p>
-            <p data-zh="证书号：软著登字第16399874号" data-en="Cert. No.: 16399874">证书号：软著登字第16399874号</p>
-            <p data-zh="登记日期：2025年9月10日" data-en="Date: Sep 10, 2025">登记日期：2025年9月10日</p>
-          </div>
-          <button class="btn-view-doc" onclick="openLightbox('patent.png')" data-zh="查看证书原件" data-en="View Certificate">查看证书原件</button>
-        </div>
-        <div class="pub-card pub-journal">
-          <div class="pub-icon pixel-text">📄</div>
-          <div class="pub-type" data-zh="期刊发表" data-en="Journal Publication">期刊发表</div>
-          <h3 data-zh="人工智能技术在计算机游戏软件中的应用分析" data-en="Analysis of AI Technology Applications in Computer Game Software">人工智能技术在计算机游戏软件中的应用分析</h3>
-          <div class="pub-meta">
-            <p data-zh="期刊：《网络游戏技术与应用》" data-en="Journal: Network Game Technology & Application">期刊：《网络游戏技术与应用》</p>
-            <p>ISSN: 2097-5082 | CN12-1483/TN</p>
-            <p data-zh="刊期：2026年4月刊" data-en="Issue: April 2026">刊期：2026年4月刊</p>
-          </div>
-          <button class="btn-view-doc" onclick="openLightbox('journal.png')" data-zh="查看录用通知" data-en="View Acceptance Letter">查看录用通知</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-      <img id="lightboxImg" src="" alt="Document">
+  <!-- ===== KONAMI EGG OVERLAY ===== -->
+  <div class="konami-overlay" id="konamiOverlay" hidden>
+    <div class="konami-text">
+      <span class="konami-icon">🎮</span>
+      <span class="konami-line">SNES MODE ACTIVATED</span>
+      <span class="konami-sub">↑↑↓↓←→←→BA</span>
     </div>
   </div>
 
-  <!-- Skills -->
-  <section class="section" id="skills">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="专业技能" data-en="Skills">专业技能</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3 class="skill-cat-title" data-zh="模型训练与数据" data-en="Model Training & Data">模型训练与数据</h3>
-          <div class="skill-bars">
-            <div class="skill-item"><span class="skill-name" data-zh="RLHF 偏好标注" data-en="RLHF Preference Annotation">RLHF 偏好标注</span><div class="skill-bar"><div class="skill-fill" data-level="92"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="A/B 对比评测" data-en="A/B Comparison">A/B 对比评测</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="SFT 数据构建" data-en="SFT Data Construction">SFT 数据构建</span><div class="skill-bar"><div class="skill-fill" data-level="85"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="Caption 标注 / 数据清洗" data-en="Caption / Data Cleaning">Caption 标注 / 数据清洗</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="Bad Case 分析" data-en="Bad Case Analysis">Bad Case 分析</span><div class="skill-bar"><div class="skill-fill" data-level="92"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="Prompt 工程" data-en="Prompt Engineering">Prompt 工程</span><div class="skill-bar"><div class="skill-fill" data-level="88"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="规则迭代与规范撰写" data-en="Rule Iteration & Spec Writing">规则迭代与规范撰写</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-cat-title" data-zh="模型评测能力" data-en="Model Evaluation">模型评测能力</h3>
-          <div class="skill-bars">
-            <div class="skill-item"><span class="skill-name" data-zh="文生视频 / 文生图评测" data-en="T2V / T2I Evaluation">文生视频 / 文生图评测</span><div class="skill-bar"><div class="skill-fill" data-level="92"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="多维打分与 A/B 对比" data-en="Multi-dim & A/B">多维打分与 A/B 对比</span><div class="skill-bar"><div class="skill-fill" data-level="92"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="Bad Case 归因分析" data-en="Bad Case Attribution">Bad Case 归因分析</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="评测维度与评分标准设计" data-en="Metric & Rubric Design">评测维度与评分标准设计</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="版本迭代对比" data-en="Version Iteration Comparison">版本迭代对比</span><div class="skill-bar"><div class="skill-fill" data-level="88"></div></div></div>
-            <div class="skill-item"><span class="skill-name" data-zh="评测报告与 SOP 输出" data-en="Evaluation Reports & SOP">评测报告与 SOP 输出</span><div class="skill-bar"><div class="skill-fill" data-level="90"></div></div></div>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-cat-title" data-zh="工具与技术" data-en="Tools & Tech">工具与技术</h3>
-          <div class="skill-tags">
-            <span class="skill-tag tag-red">Python</span>
-            <span class="skill-tag tag-blue">pandas</span>
-            <span class="skill-tag tag-red" data-zh="数据可视化" data-en="Data Visualization">数据可视化</span>
-            <span class="skill-tag tag-blue" data-zh="脚本自动化" data-en="Script Automation">脚本自动化</span>
-            <span class="skill-tag tag-red">Java</span>
-            <span class="skill-tag tag-blue">Spring Boot</span>
-            <span class="skill-tag tag-red">Vue</span>
-            <span class="skill-tag tag-blue" data-zh="主流 AI 模型与标注平台" data-en="Mainstream AI & Annotation Platforms">主流 AI 模型与标注平台</span>
-            <span class="skill-tag tag-red">JSON / API</span>
-            <span class="skill-tag tag-blue">Coze 工作流</span>
-            <span class="skill-tag tag-red" data-zh="机器学习" data-en="Machine Learning">机器学习</span>
-            <span class="skill-tag tag-blue" data-zh="NLP 基础" data-en="NLP Fundamentals">NLP 基础</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3 class="skill-cat-title" data-zh="自动化实践" data-en="Automation Practice">自动化实践</h3>
-          <div class="skill-tags">
-            <span class="skill-tag tag-blue" data-zh="意图识别 PE" data-en="Intent Recognition PE">意图识别 PE</span>
-            <span class="skill-tag tag-red" data-zh="分类 PE 工作流" data-en="Category-specific PE Workflow">分类 PE 工作流</span>
-            <span class="skill-tag tag-blue" data-zh="验证闭环设计" data-en="Verification Loop">验证闭环设计</span>
-            <span class="skill-tag tag-red" data-zh="人工介入 100%→6%" data-en="Manual: 100%→6%">人工介入 100%→6%</span>
-            <span class="skill-tag tag-blue" data-zh="日志增量对比" data-en="Log-based Incremental Eval">日志增量对比</span>
-            <span class="skill-tag tag-red" data-zh="Prompt 模板迭代" data-en="Prompt Template Iteration">Prompt 模板迭代</span>
-            <span class="skill-tag tag-blue" data-zh="Coze Workflow 搭建" data-en="Coze Workflow Building">Coze Workflow 搭建</span>
-            <span class="skill-tag tag-red" data-zh="标注规范 SOP 沉淀" data-en="Annotation SOP">标注规范 SOP 沉淀</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section section-alt" id="contact">
-    <div class="container">
-      <h2 class="section-title">
-        <span class="pixel-diamond">◆</span>
-        <span data-zh="联系我" data-en="Contact">联系我</span>
-        <span class="pixel-diamond">◆</span>
-      </h2>
-      <div class="contact-grid">
-        <div class="contact-card"><div class="contact-icon">📱</div><div class="contact-label" data-zh="电话" data-en="Phone">电话</div><div class="contact-value">158-4546-1696</div></div>
-        <div class="contact-card"><div class="contact-icon">📧</div><div class="contact-label" data-zh="邮箱" data-en="Email">邮箱</div><div class="contact-value">2037414901@qq.com</div></div>
-        <div class="contact-card"><div class="contact-icon">💬</div><div class="contact-label" data-zh="微信" data-en="WeChat">微信</div><div class="contact-value">x2037414901</div></div>
-        <div class="contact-card"><div class="contact-icon">🕐</div><div class="contact-label" data-zh="到岗时间" data-en="Availability">到岗时间</div><div class="contact-value" data-zh="一周内" data-en="Within 1 week">一周内</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p class="pixel-text">
-      <span data-zh="© 2026 贾旭 · 用热爱构建AI的未来" data-en="© 2026 Jia Xu · Building the Future of AI with Passion">© 2026 贾旭 · 用热爱构建AI的未来</span>
-    </p>
-  </footer>
-
-  <script src="script.js?v=20260427b"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="script.js?v=switch1"></script>
 </body>
 </html>
